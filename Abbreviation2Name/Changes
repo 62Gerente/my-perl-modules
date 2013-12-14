@@ -1,0 +1,6 @@
+Revision history for Perl extension Abbreviation2Name.
+
+0.01  Fri Dec 13 13:49:45 2013
+	- original version; created by h2xs 1.23 with options
+		-A -X -c -e -k -b 5.16.2 -n Abbreviation2Name
+

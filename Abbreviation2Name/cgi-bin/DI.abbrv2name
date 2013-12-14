@@ -1,0 +1,40 @@
+#!/usr/bin/perl
+
+use strict;
+use warnings;
+use CGI;
+use utf8::all;
+use Abbreviation2Name;
+
+my $q = CGI->new;
+
+print $q->header(-charset=>'utf-8');
+print $q->start_html('DI: Abbreviation to Name'),$q->h1("DI: Abbreviations to Names"),
+
+$q->start_form,
+"Enter the abbreviation: ",
+$q->textfield('abbrv'),
+$q->submit,
+$q->end_form;
+
+if ($q->param()) { 
+   print "Name: " . name($q->param('abbrv'));
+}
+
+print $q->end_html();
+
+sub name{
+  my $abbrv = shift;
+  my $dict = Abbreviation2Name->new("di.names");
+
+  my $name = $dict->name($abbrv);
+
+  if(defined $name){
+    "Not found";
+  }else{
+    $name;
+  }
+}
+
+__END__
+

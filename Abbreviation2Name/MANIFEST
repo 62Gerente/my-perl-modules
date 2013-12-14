@@ -1,0 +1,11 @@
+Changes
+Makefile.PL
+MANIFEST
+README
+t/Abbreviation2Name.t
+lib/Abbreviation2Name.pm
+files/di.names
+files/sieeum.names
+bin/abbrv2name
+cgi-bin/abbrv2name
+cgi-bin/di.names

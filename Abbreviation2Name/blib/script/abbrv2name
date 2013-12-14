@@ -1,0 +1,41 @@
+#!/usr/bin/perl
+
+eval 'exec /usr/bin/perl  -S $0 ${1+"$@"}'
+    if 0; # not running under some shell
+
+use strict;
+use warnings;
+use Abbreviation2Name;
+use utf8::all;
+
+die("Wrong number of parameters.") if (@ARGV < 2);
+
+my $dictionary = shift;
+my $dict = Abbreviation2Name->new($dictionary);
+
+foreach(@ARGV){
+  open my $file, "< $_" or die "Can't open $_: $!";
+  while(<$file>){
+    chomp;
+    my $abbrv = $_;
+    my $name = $dict->name($abbrv);
+
+    if(defined $name){
+      print "$abbrv : $name\n";
+    }else{
+      print "$abbrv : Not found\n";
+    }
+  }
+  close $file;
+}
+
+__END__
+=encoding UTF-8
+
+=head1 NAME
+  
+  abbrv2name - Translating abbreviations into full names.
+
+=head1 SYNOPSIS
+
+  abbrv2name DICTIONARY ABBRVS_FILE [ABBRVS_FILE ...] 
